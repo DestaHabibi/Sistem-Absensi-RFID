@@ -8,6 +8,7 @@ com\mycompany\mavenproject1\object\TesKoneksi.class
 com\mycompany\mavenproject1\Dashboard$2.class
 com\mycompany\mavenproject1\LoginPage$2.class
 com\mycompany\mavenproject1\Dashboard$1.class
+com\mycompany\mavenproject1\object\GradientMap\LinearPanel.class
 com\mycompany\mavenproject1\LoginPage.class
 com\mycompany\mavenproject1\object\MongoManager.class
 com\mycompany\mavenproject1\object\GenericDAO.class
