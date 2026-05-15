@@ -4,6 +4,7 @@
  */
 package com.mycompany.absensi_rfid;
 import com.mycompany.absensi_rfid.object.Lecturer;
+import com.mycompany.absensi_rfid.panels.PanelDashboard;
 /**
  *
  * @author MyBook Hype AMD
@@ -22,7 +23,18 @@ public class Dashboard extends javax.swing.JFrame {
         if (user != null) {
             lblUsername.setText(user.getNama()); 
         }
+        tampilkanPanelDashboard();
     }
+    private void tampilkanPanelDashboard() {
+    jPanel3.removeAll();
+    jPanel3.setLayout(new java.awt.BorderLayout());
+    
+    PanelDashboard pnlDashboard = new PanelDashboard();
+    
+    jPanel3.add(pnlDashboard, java.awt.BorderLayout.CENTER);
+    jPanel3.revalidate();
+    jPanel3.repaint();
+}
     public Dashboard(){
         initComponents();    
         
@@ -219,8 +231,8 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardBtnActionPerformed
-        // TODO add your handling code here:
-
+        // TODO add your handling code here:                                    
+        tampilkanPanelDashboard();
     }//GEN-LAST:event_dashboardBtnActionPerformed
 
     private void dashboardBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardBtn1ActionPerformed
