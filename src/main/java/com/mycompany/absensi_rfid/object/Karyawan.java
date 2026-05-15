@@ -8,32 +8,33 @@ package com.mycompany.absensi_rfid.object;
  *
  * @author MyBook Hype AMD
  */
-public class Lecturer {
+public class Karyawan {
     private String nama;
-    private String nip;
     private String username;
-    private String password;
+    private String divisi;
     private String status;
+    private String id_karyawan;
     
-    public Lecturer(){
+    public Karyawan(){
         
     }
     
-    public Lecturer(String nama, String nip, String username, String password, String status) {
-        this.nama = nama;
-        this.nip = nip;
-        this.username = username;
-        this.password = password;
-        this.status = status;
+    public Karyawan(String nama, String username, String divisi, String status, String id_karyawan) {
+    this.nama = nama;
+    this.username = username;
+    this.divisi = divisi;
+    this.status = status;
+    this.id_karyawan = id_karyawan;
     }
     
-    @Override
+        @Override
     public String toString() {
-        return "Lecturer{" +
+        return "karyawan{" +
                 "nama='" + nama + '\'' +
-                ", nip='" + nip + '\'' +
                 ", username='" + username + '\'' +
+                ", divisi='" + divisi + '\'' +
                 ", status='" + status + '\'' +
+                ", id_admin='" + id_karyawan + '\'' +
                 '}';
     }
 
@@ -46,14 +47,6 @@ public class Lecturer {
         this.nama = nama;
     }
 
-    public String getNip() {
-        return nip;
-    }
-
-    public void setNip(String nip) {
-        this.nip = nip;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -61,13 +54,13 @@ public class Lecturer {
     public void setUsername(String username) {
         this.username = username;
     }
-
-    public String getPassword() {
-        return password;
+    
+    public String getDivisi() {
+        return divisi;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setDivisi(String divisi) {
+        this.divisi = divisi;
     }
 
     public String getStatus() {
@@ -77,4 +70,12 @@ public class Lecturer {
     public void setStatus(String status) {
         this.status = status;
     }
+    public String getId_karyawan() {
+        return id_karyawan;
+    }
+
+    public void setId_karyawan(String id_karyawan) {
+        this.id_karyawan = id_karyawan;
+    }
+    
 }

@@ -3,18 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.absensi_rfid;
-import com.mycompany.absensi_rfid.object.Lecturer;
+import com.mycompany.absensi_rfid.object.Admin;
 import com.mycompany.absensi_rfid.panels.PanelDashboard;
 /**
  *
  * @author MyBook Hype AMD
  */
 public class Dashboard extends javax.swing.JFrame {
-    private Lecturer loggedInUser;
+    private Admin loggedInUser;
     /**
      * Creates new form Dashboard
      */
-    public Dashboard(Lecturer user) {
+    public Dashboard(Admin user) {
         initComponents();
         
         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
@@ -147,7 +147,7 @@ public class Dashboard extends javax.swing.JFrame {
         dashboardBtn1.setBackground(new java.awt.Color(43, 121, 221));
         dashboardBtn1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         dashboardBtn1.setForeground(new java.awt.Color(255, 255, 255));
-        dashboardBtn1.setText("Attendance");
+        dashboardBtn1.setText("Absensi");
         dashboardBtn1.setBorderPainted(false);
         dashboardBtn1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         dashboardBtn1.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +159,7 @@ public class Dashboard extends javax.swing.JFrame {
         dashboardBtn2.setBackground(new java.awt.Color(43, 121, 221));
         dashboardBtn2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         dashboardBtn2.setForeground(new java.awt.Color(255, 255, 255));
-        dashboardBtn2.setText("Report");
+        dashboardBtn2.setText("Laporan");
         dashboardBtn2.setBorderPainted(false);
         dashboardBtn2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         dashboardBtn2.addActionListener(new java.awt.event.ActionListener() {

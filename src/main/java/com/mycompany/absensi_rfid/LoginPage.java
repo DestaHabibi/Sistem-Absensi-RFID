@@ -5,7 +5,7 @@
 package com.mycompany.absensi_rfid;
 
 import com.mycompany.absensi_rfid.DAO.GenericDAO;
-import com.mycompany.absensi_rfid.object.Lecturer;
+import com.mycompany.absensi_rfid.object.Admin;
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 import org.bson.conversions.Bson;
@@ -187,19 +187,19 @@ public class LoginPage extends javax.swing.JFrame {
         String usernameInput = txtUsername.getText();
         String passwordInput = new String(txtPassword.getPassword());
         
-        GenericDAO<Lecturer> lecturerDAO = new GenericDAO<>("lecturers", Lecturer.class);
+        GenericDAO<Admin> adminDAO = new GenericDAO<>("admin", Admin.class);
         
         Bson loginFilter = and(
                 eq("username", usernameInput),
                 eq("password", passwordInput)
         );
         
-        Lecturer lecturer = lecturerDAO.findOne(loginFilter);
+        Admin admin = adminDAO.findOne(loginFilter);
         
-        if (lecturer != null) {
+        if (admin != null) {
             try {
-                JOptionPane.showMessageDialog(this, "Login Berhasil! Selamat Datang " + lecturer.getNama());
-                Dashboard dashboard = new Dashboard(lecturer);
+                JOptionPane.showMessageDialog(this, "Login Berhasil! Selamat Datang " + admin.getNama());
+                Dashboard dashboard = new Dashboard(admin);
                 dashboard.setLocationRelativeTo(null);
 
                 dashboard.setVisible(true);

@@ -4,19 +4,36 @@
  */
 package com.mycompany.absensi_rfid.panels;
 
+import com.mycompany.absensi_rfid.service.KaryawanService;
+import javax.swing.DefaultButtonModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author MyBook Hype AMD
  */
 public class PanelDashboard extends javax.swing.JPanel {
-
+    
+    KaryawanService service = new KaryawanService();
     /**
      * Creates new form PanelDashboard
      */
     public PanelDashboard() {
         initComponents();
+        showData("");
     }
-
+    
+    public void refreshData(){
+        showData("");
+    }
+    
+    public static void showData(String keyword){
+        KaryawanService service = new KaryawanService();
+        DefaultTableModel model = (DefaultTableModel) tblKaryawan.getModel();
+        service.tampilKaryawan(model, keyword);
+        
+        service.updateDashboardStats(lblTotal);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,7 +49,7 @@ public class PanelDashboard extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel69 = new javax.swing.JPanel();
         jLabel180 = new javax.swing.JLabel();
-        jLabel181 = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
         jLabel182 = new javax.swing.JLabel();
         jPanel70 = new javax.swing.JPanel();
         jLabel184 = new javax.swing.JLabel();
@@ -45,11 +62,15 @@ public class PanelDashboard extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        hapusBtn = new javax.swing.JButton();
+        editBtn = new javax.swing.JButton();
+        tambahBtn = new javax.swing.JButton();
+        pencarianField = new javax.swing.JTextField();
+        cariBtn = new javax.swing.JButton();
+        refreshBtn = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblKaryawan = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(0, 0));
@@ -65,16 +86,16 @@ public class PanelDashboard extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(643, Short.MAX_VALUE))
+                .addContainerGap(672, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(17, 17, 17))
+                .addGap(16, 16, 16))
         );
 
         add(jPanel2, java.awt.BorderLayout.NORTH);
@@ -91,11 +112,11 @@ public class PanelDashboard extends javax.swing.JPanel {
 
         jLabel180.setFont(new java.awt.Font("Liberation Sans", 2, 14)); // NOI18N
         jLabel180.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel180.setText("Total Mahasiswa");
+        jLabel180.setText("Total Karyawan");
 
-        jLabel181.setFont(new java.awt.Font("SansSerif", 1, 28)); // NOI18N
-        jLabel181.setForeground(new java.awt.Color(37, 44, 88));
-        jLabel181.setText("200");
+        lblTotal.setFont(new java.awt.Font("SansSerif", 1, 28)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(37, 44, 88));
+        lblTotal.setText("200");
 
         jLabel182.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Group 8934.png"))); // NOI18N
 
@@ -106,9 +127,9 @@ public class PanelDashboard extends javax.swing.JPanel {
             .addGroup(jPanel69Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(jPanel69Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel181)
-                    .addComponent(jLabel180))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                    .addComponent(lblTotal)
+                    .addComponent(jLabel180, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(58, 58, 58)
                 .addComponent(jLabel182)
                 .addGap(35, 35, 35))
         );
@@ -116,7 +137,7 @@ public class PanelDashboard extends javax.swing.JPanel {
             jPanel69Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel69Layout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jLabel181)
+                .addComponent(lblTotal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel180)
                 .addGap(20, 20, 20))
@@ -135,13 +156,13 @@ public class PanelDashboard extends javax.swing.JPanel {
 
         jLabel184.setFont(new java.awt.Font("SansSerif", 1, 28)); // NOI18N
         jLabel184.setForeground(new java.awt.Color(37, 44, 88));
-        jLabel184.setText("55");
+        jLabel184.setText("-");
 
         jLabel185.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Group 8934.png"))); // NOI18N
 
         jLabel189.setFont(new java.awt.Font("Liberation Sans", 2, 14)); // NOI18N
         jLabel189.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel189.setText("Mahasiswa Hadir");
+        jLabel189.setText("Karyawan Hadir");
 
         javax.swing.GroupLayout jPanel70Layout = new javax.swing.GroupLayout(jPanel70);
         jPanel70.setLayout(jPanel70Layout);
@@ -152,7 +173,7 @@ public class PanelDashboard extends javax.swing.JPanel {
                 .addGroup(jPanel70Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel189)
                     .addComponent(jLabel184))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(jLabel185)
                 .addGap(39, 39, 39))
         );
@@ -179,13 +200,13 @@ public class PanelDashboard extends javax.swing.JPanel {
 
         jLabel187.setFont(new java.awt.Font("SansSerif", 1, 28)); // NOI18N
         jLabel187.setForeground(new java.awt.Color(37, 44, 88));
-        jLabel187.setText("20");
+        jLabel187.setText("-");
 
         jLabel188.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Group 8934.png"))); // NOI18N
 
         jLabel190.setFont(new java.awt.Font("Liberation Sans", 2, 14)); // NOI18N
         jLabel190.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel190.setText("Mahasiswa Absen");
+        jLabel190.setText("Karyawan Absen");
 
         javax.swing.GroupLayout jPanel71Layout = new javax.swing.GroupLayout(jPanel71);
         jPanel71.setLayout(jPanel71Layout);
@@ -196,7 +217,7 @@ public class PanelDashboard extends javax.swing.JPanel {
                 .addGroup(jPanel71Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel190)
                     .addComponent(jLabel187))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jLabel188)
                 .addGap(37, 37, 37))
         );
@@ -222,178 +243,265 @@ public class PanelDashboard extends javax.swing.JPanel {
         jPanel5.setLayout(new java.awt.BorderLayout());
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setPreferredSize(new java.awt.Dimension(861, 50));
+        jPanel4.setPreferredSize(new java.awt.Dimension(861, 85));
 
-        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel9.setText("Daftar mahasiswa");
+        jLabel9.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
+        jLabel9.setText("Daftar Karyawan");
 
-        jButton1.setBackground(new java.awt.Color(255, 0, 51));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Hapus");
+        hapusBtn.setBackground(new java.awt.Color(255, 0, 51));
+        hapusBtn.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        hapusBtn.setForeground(new java.awt.Color(255, 255, 255));
+        hapusBtn.setText("Hapus");
+        hapusBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(43, 121, 221));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Edit");
+        editBtn.setBackground(new java.awt.Color(43, 121, 221));
+        editBtn.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        editBtn.setForeground(new java.awt.Color(255, 255, 255));
+        editBtn.setText("Edit");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
-        jButton3.setBackground(new java.awt.Color(43, 121, 221));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Tambah");
+        tambahBtn.setBackground(new java.awt.Color(43, 121, 221));
+        tambahBtn.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tambahBtn.setForeground(new java.awt.Color(255, 255, 255));
+        tambahBtn.setText("Tambah");
+        tambahBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tambahBtnActionPerformed(evt);
+            }
+        });
+
+        pencarianField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pencarianFieldActionPerformed(evt);
+            }
+        });
+
+        cariBtn.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        cariBtn.setForeground(new java.awt.Color(51, 51, 51));
+        cariBtn.setText("Cari");
+        cariBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariBtnActionPerformed(evt);
+            }
+        });
+
+        refreshBtn.setBackground(new java.awt.Color(67, 224, 103));
+        refreshBtn.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        refreshBtn.setForeground(new java.awt.Color(255, 255, 255));
+        refreshBtn.setText("Refresh");
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(39, 39, 39))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tambahBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(hapusBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pencarianField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cariBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addContainerGap(730, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(pencarianField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(hapusBtn)
+                        .addComponent(editBtn)
+                        .addComponent(tambahBtn)
+                        .addComponent(refreshBtn))
+                    .addComponent(cariBtn))
+                .addGap(23, 23, 23))
         );
 
         jPanel5.add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
+        jPanel6.setLayout(new java.awt.BorderLayout());
+
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblKaryawan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "No", "Nama", "NIM", "Program Studi"
+                "ID", "Nama", "Divisi"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblKaryawan);
 
-        jPanel5.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        jPanel6.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jPanel5.add(jPanel6, java.awt.BorderLayout.CENTER);
 
         jPanel3.add(jPanel5, java.awt.BorderLayout.CENTER);
 
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void cariBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariBtnActionPerformed
+        // TODO add your handling code here:
+        showData(pencarianField.getText());
+    }//GEN-LAST:event_cariBtnActionPerformed
+
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        // TODO add your handling code here:
+        showData("");
+    }//GEN-LAST:event_refreshBtnActionPerformed
+
+    private void tambahBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tambahBtnActionPerformed
+
+    private void hapusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hapusBtnActionPerformed
+
+    private void pencarianFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pencarianFieldActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pencarianFieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton cariBtn;
+    private javax.swing.JButton editBtn;
+    private javax.swing.JButton hapusBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel180;
-    private javax.swing.JLabel jLabel181;
     private javax.swing.JLabel jLabel182;
     private javax.swing.JLabel jLabel184;
     private javax.swing.JLabel jLabel185;
@@ -407,10 +515,15 @@ public class PanelDashboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel69;
     private javax.swing.JPanel jPanel70;
     private javax.swing.JPanel jPanel71;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public static javax.swing.JLabel lblTotal;
+    private javax.swing.JTextField pencarianField;
+    private javax.swing.JButton refreshBtn;
+    private javax.swing.JButton tambahBtn;
+    public static javax.swing.JTable tblKaryawan;
     // End of variables declaration//GEN-END:variables
 }
