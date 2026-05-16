@@ -7,6 +7,9 @@ package com.mycompany.absensi_rfid.panels;
 import com.mycompany.absensi_rfid.service.KaryawanService;
 import javax.swing.DefaultButtonModel;
 import javax.swing.table.DefaultTableModel;
+import com.mycompany.absensi_rfid.Dialog.TambahKaryawan;
+import com.mycompany.absensi_rfid.Dialog.EditKaryawan;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -484,10 +487,29 @@ public class PanelDashboard extends javax.swing.JPanel {
 
     private void tambahBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahBtnActionPerformed
         // TODO add your handling code here:
+        TambahKaryawan dialog = new TambahKaryawan(null, true);
+        dialog.setVisible(true);
+        showData("");
     }//GEN-LAST:event_tambahBtnActionPerformed
 
     private void hapusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusBtnActionPerformed
         // TODO add your handling code here:
+        int selectedRow = tblKaryawan.getSelectedRow();
+    
+        if (selectedRow != -1) {
+            String idKaryawan = tblKaryawan.getValueAt(selectedRow, 0).toString();
+            String nama = tblKaryawan.getValueAt(selectedRow, 1).toString();
+
+            int confirm = JOptionPane.showConfirmDialog(this, "Hapus karyawan: " + nama + "?", "Hapus", JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                KaryawanService service = new KaryawanService();
+                service.hapusKaryawan(idKaryawan);
+                showData("");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Pilih data di tabel yang ingin dihapus!");
+        }
     }//GEN-LAST:event_hapusBtnActionPerformed
 
     private void pencarianFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pencarianFieldActionPerformed

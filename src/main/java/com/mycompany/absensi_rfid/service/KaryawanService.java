@@ -89,5 +89,12 @@ public class KaryawanService {
             JOptionPane.showMessageDialog(null, "Data berhasil diperbarui!");
         }
     }
+    public void hapusKaryawan(String idK) {
+        Bson filter = Filters.eq("id_Karyawan", idK);
+        DAO.delete(filter); // Menggunakan deleteOne [6]
+        PanelDashboard.showData("");
+        JOptionPane.showMessageDialog(null, "Data karyawan berhasil dihapus.");
+    }
+    
     
 }
